@@ -1,0 +1,27 @@
+@import 'mixins';
+
+.tooltip {
+    position: relative;
+
+    &:focus {
+        outline: auto;
+    }
+
+    &-trigger {
+        @include set-type-size(zeta);
+        @include appearance(none);
+        @include padding(none);
+        background: transparent;
+        border: none;
+
+    }
+
+    &-popover {
+        @include padding(small);
+        position: absolute;
+        background: grey;
+        cursor: pointer;
+        max-width: 200px;
+    }
+
+}

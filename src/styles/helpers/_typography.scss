@@ -1,0 +1,133 @@
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+/**
+ Font families
+*/
+$type-cs-ep: Arial, Helvetica, sans-serif;
+
+
+/**
+ Font variation types
+*/
+$type-variant: (
+    heading: $type-cs-ep,
+    content: $type-cs-ep
+);
+
+
+/**
+ Vertical Rhythm properties
+*/
+$base-font-size: 16px;
+$base-line-height: 24px;
+$font-unit: 1rem;
+$relative-font-sizing: false;
+$round-to-nearest-half-line: false;
+
+
+/**
+ Type sizes and line-heights
+*/
+$type-scale: (
+    giga: (
+        size: 50,
+        height: 51
+    ),
+    mega: (
+        size: 40,
+        height: 43
+    ),
+    kilo: (
+        size: 37,
+        height: 38
+    ),
+    alpha: (
+        size: 30,
+        height: 35
+    ),
+    beta: (
+        size: 28,
+        height: 32
+    ),
+    gamma: (
+        size: 24,
+        height: 32
+    ),
+    delta: (
+        size: 20,
+        height: 24
+    ),
+    epsilon: (
+        size: 18,
+        height: 32
+    ),
+    zeta: (
+        size: 16,
+        height: 24
+    ),
+    micro: (
+        size: 14,
+        height: 22
+    ),
+    milli: (
+        size: 12,
+        height: 18
+    ),
+    mini: (
+        size: 10,
+        height: 18
+    )
+);
+
+
+/**
+ Function for getting font-size from type-scale
+ @param {String} $font-size Name of font size to retrieve
+*/
+@function get-type-size($font-size) {
+    $converted-size: px-to-rem(map-deep-get($type-scale, $font-size, size));
+
+    //get the $type-scale font size and set the vertical rhythm
+    @return $converted-size;
+}
+
+/**
+ Function for getting line-height from type-scale
+ @param {String} $font-size Name of font size to retrieve
+*/
+@function get-type-height($font-size) {
+    $converted-size: px-to-rem(map-deep-get($type-scale, $font-size, height));
+
+    //get the $type-scale font size and set the vertical rhythm
+    @return $converted-size;
+}
+
+/**
+ Mixin for setting the font-size and line-height from type-scale
+ @param {String} $font-size Name of font size to set
+*/
+@mixin set-type-size($font-size) {
+    font-size: get-type-size($font-size);
+    line-height: get-type-height($font-size);
+}
+
+/**
+ Mixin for setting the font styles for an element
+ @param {String} $font-variant Name of font variant (family) from the $type-variant map
+ @param {String} $font-size Font size from the $type-scale
+ @param {String} $font-weight Optional font style weight (accepts: normal || bold)
+ @param {String} $type-color Optional font color from $color-type map
+*/
+@mixin set-type($font-variant: 'content', $font-size: 'zeta', $font-weight: normal, $type-color: 'default') {
+    //get the font variant property
+    font-family: map-get($type-variant, $font-variant);
+    font-weight: $font-weight;
+    @include set-type-size($font-size);
+
+    @if($type-color != 'none') {
+        color: get-color(type, $type-color);
+    }
+}
+

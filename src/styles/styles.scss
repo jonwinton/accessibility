@@ -1,0 +1,10 @@
+@import 'helpers/mixins';
+
+@import 'base/reset';
+@import 'base/elements';
+
+
+.site {
+    max-width: 800px;
+    margin: 0 auto;
+}

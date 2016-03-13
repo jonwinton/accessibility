@@ -1,0 +1,6 @@
+/* ==========================================================================
+   FUNCTION FOR CONVERTING PX TO EM'S
+   ========================================================================== */
+@function px-to-rem($px) {
+    @return ( strip-units($px) / strip-units($base-font-size) ) * 1rem;
+}

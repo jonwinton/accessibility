@@ -1,0 +1,25 @@
+@import '../utils/utils';
+@import 'typography';
+@import 'spacing';
+
+
+@mixin isVisuallyHidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+
+.isVisuallyHidden {
+    @include isVisuallyHidden();
+}
+
+@mixin appearance($value: none) {
+    -webkit-appearance: $value;
+    -moz-appearance: $value;
+    appearance: $value;
+}
